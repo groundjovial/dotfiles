@@ -1,37 +1,50 @@
 "Vim Configuration
 
 set nocompatible
+set encoding=utf-8
+let mapleader=","
 filetype off
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
 
+Plugin 'flazz/vim-colorschemes'
+
 call vundle#end()
 filetype indent plugin on
 
-syntax on
-set encoding=utf-8
+set tabstop=4
+set softtabstop=4
+set expandtab
+set shiftwidth=4
+set listchars=tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
+" <ctrl-v>u25b8 <ctrl-v>u00ac
+
+"colorscheme elflord
+colorscheme Tomorrow-Night-Eighties
+set background=dark
 
 set guifont=Liberation\ Mono\ for\ Powerline\ 12
-
 "set guifont=Inconsolata\ for\ Powerline\ 10
 let g:airline_powerline_fonts=1
+let g:airline_theme='powerlineish'
+let g:airline#extensions#tabline#enabled=1
 
-colorscheme elflord
-set laststatus=2
+
+syntax on
+set hidden
+
 set number
+set laststatus=2
 
 set nohlsearch
 set incsearch
 set autoindent
 
 set backspace=2
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-
 set nobackup
 set nowritebackup
 set history=50
@@ -48,6 +61,14 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" Move line up / down
+no <C-down> ddp
+no <C-up> ddkP
+
+" Move line up / down
+vmap <C-down> xp`[V`]
+vmap <C-up> xkP`[V`]
+
 " Disable arrow keys
 no <down> <Nop>
 no <left> <Nop>
@@ -61,10 +82,6 @@ vno <down> <Nop>
 vno <left> <Nop>
 vno <right> <Nop>
 vno <up> <Nop>
-
-" Move lines up / down
-no <C-down> ddp
-no <C-up> ddkP
 
 " Buffers
 :nnoremap <Tab> :bnext<CR>
@@ -97,5 +114,11 @@ imap <leader>" ""<ESC>i
 imap <leader>( ()<ESC>i
 imap <leader>[ []<ESC>i
 
+nmap <leader>l :set list!<CR>
+map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+nmap <leader>v :tabedit $MYVIMRC<CR>
 
+if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+endif
 
