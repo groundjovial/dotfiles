@@ -1,6 +1,8 @@
 "Vim Configuration
 
 set nocompatible
+scriptencoding=utf-8
+set termencoding=utf-8
 set encoding=utf-8
 let mapleader=","
 filetype off
@@ -27,8 +29,17 @@ set listchars=tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 colorscheme Tomorrow-Night-Eighties
 set background=dark
 
-set guifont=Liberation\ Mono\ for\ Powerline\ 12
-"set guifont=Inconsolata\ for\ Powerline\ 10
+if has('win32')
+    set clipboard-unnamed
+endif
+
+if has('gui_running')
+    set guifont=Liberation\ Mono\ for\ Powerline\ 12
+    "set guifont=Inconsolata\ for\ Powerline\ 10
+else
+    set t_Co=256  
+endif
+
 let g:airline_powerline_fonts=1
 let g:airline_theme='powerlineish'
 let g:airline#extensions#tabline#enabled=1
