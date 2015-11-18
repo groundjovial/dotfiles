@@ -15,13 +15,15 @@ Plugin 'bling/vim-airline'
 
 Plugin 'flazz/vim-colorschemes'
 
+Plugin 'Valloric/YouCompleteMe'
+
 call vundle#end()
 filetype indent plugin on
 
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set listchars=tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 " <ctrl-v>u25b8 <ctrl-v>u00ac
 
@@ -30,20 +32,22 @@ colorscheme Tomorrow-Night-Eighties
 set background=dark
 
 if has('win32')
-    set clipboard-unnamed
+  set clipboard-unnamed
 endif
 
 if has('gui_running')
-    set guifont=Liberation\ Mono\ for\ Powerline\ 12
-    "set guifont=Inconsolata\ for\ Powerline\ 10
+  set guifont=Liberation\ Mono\ for\ Powerline\ 12
+  "set guifont=Inconsolata\ for\ Powerline\ 10
 else
-    set t_Co=256  
+  set t_Co=256  
 endif
 
 let g:airline_powerline_fonts=1
 let g:airline_theme='powerlineish'
 let g:airline#extensions#tabline#enabled=1
 
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_after_insertion=1
 
 syntax on
 set hidden
@@ -71,6 +75,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" Insert lank line above / below
+nnoremap <Enter> :call append(line('.'), '')<CR>
+nnoremap <S-Enter> :call append(line('.')-1, '')<CR>
 
 " Move line up / down
 no <C-down> ddp
@@ -128,8 +136,9 @@ imap <leader>[ []<ESC>i
 nmap <leader>l :set list!<CR>
 map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 nmap <leader>v :tabedit $MYVIMRC<CR>
+nmap <leader>y :edit ~/.ycm_extra_conf.py
 
 if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
