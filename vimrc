@@ -7,18 +7,45 @@ set encoding=utf-8
 let mapleader=","
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+if has('win32') || has('win64')
+  set rtp+=~/vimfiles/bundle/Vundle.vim
+  let vimDir='~/vimfiles/bundle/'
+else
+  set rtp+=~/.vim/bundle/Vundle.vim
+  let vimDir='~/.vim/bundle/'
+endif
+call vundle#begin(vimDir)
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
-
 Plugin 'flazz/vim-colorschemes'
+if has('unix')
+  Plugin 'Valloric/YouCompleteMe'
+endif
 
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'kien/ctrlp.vim'
+"Plugin 'tomasr/molokai'
+"Plugin 'scrooloose/syntastic'
 
 call vundle#end()
 filetype indent plugin on
+
+"""""""""""""""""
+" Plugin Settings
+
+let g:airline_powerline_fonts=1
+let g:airline_theme='powerlineish'
+let g:airline#extensions#tabline#enabled=1
+
+"map <F10> :NERDTreeToggle<CR>
+"map <F9> :NERDTreeFind<CR>
+
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_after_insertion=1
+
+"""""""""""""""""
+" Vim settings
 
 set tabstop=2
 set softtabstop=2
@@ -31,23 +58,26 @@ set listchars=tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 colorscheme Tomorrow-Night-Eighties
 set background=dark
 
+let &colorcolumn=join(range(81,999),",")
+
 if has('win32')
-  set clipboard-unnamed
+  " set clipboard-unnamed
+  set noerrorbells visualbell t_vb=
+  augroup THEBELLS_GROUP
+    autocmd!
+    autocmd GUIEnter * set visualbell t_vb=
+  augroup end
 endif
 
 if has('gui_running')
-  set guifont=Liberation\ Mono\ for\ Powerline\ 12
-  "set guifont=Inconsolata\ for\ Powerline\ 10
+  if has('win32')
+    set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cANSI
+  else
+    set guifont=Liberation\ Mono\ for\ Powerline\ 12
+  endif
 else
-  set t_Co=256  
+  set t_Co=256
 endif
-
-let g:airline_powerline_fonts=1
-let g:airline_theme='powerlineish'
-let g:airline#extensions#tabline#enabled=1
-
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_autoclose_preview_after_insertion=1
 
 syntax on
 set hidden
@@ -67,6 +97,7 @@ set history=50
 set ruler
 set showcmd
 
+" Open new split panes to right and bottom
 set splitbelow
 set splitright
 
@@ -76,7 +107,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Insert lank line above / below
+" Insert blank line above / below
 nnoremap <Enter> :call append(line('.'), '')<CR>
 nnoremap <S-Enter> :call append(line('.')-1, '')<CR>
 
@@ -138,7 +169,10 @@ map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 nmap <leader>v :tabedit $MYVIMRC<CR>
 nmap <leader>y :edit ~/.ycm_extra_conf.py
 
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+augroup VIMRC_GROUP
+  autocmd!
+  autocmd bufwritepost .vimrc source $MYVIMRC | AirlineRefresh
+augroup end
+
+
 
