@@ -47,6 +47,7 @@ let g:ycm_autoclose_preview_after_insertion=1
 """""""""""""""""
 " Vim settings
 
+set cursorline
 set tabstop=2
 set softtabstop=2
 set expandtab
@@ -74,6 +75,9 @@ if has('gui_running')
     set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cANSI
   else
     set guifont=Liberation\ Mono\ for\ Powerline\ 12
+    set guioptions-=m " No menu bar
+    set guioptions-=T " No tool bar
+    set guioptions-=r " No vertical scroll bar
   endif
 else
   set t_Co=256
@@ -119,6 +123,9 @@ no <C-up> ddkP
 vmap <C-down> xp`[V`]
 vmap <C-up> xkP`[V`]
 
+" Disable mouse
+set mouse-=a
+
 " Disable arrow keys
 no <down> <Nop>
 no <left> <Nop>
@@ -163,6 +170,9 @@ imap <leader>' ''<ESC>i
 imap <leader>" ""<ESC>i
 imap <leader>( ()<ESC>i
 imap <leader>[ []<ESC>i
+
+" Put semi-colon at end of line and return to current position
+nmap <leader>; <Esc>mAA;<Esc>`A
 
 nmap <leader>l :set list!<CR>
 map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
