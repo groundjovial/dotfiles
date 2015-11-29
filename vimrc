@@ -75,10 +75,10 @@ if has('gui_running')
     set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cANSI
   else
     set guifont=Liberation\ Mono\ for\ Powerline\ 12
-    set guioptions-=m " No menu bar
-    set guioptions-=T " No tool bar
-    set guioptions-=r " No vertical scroll bar
   endif
+  set guioptions-=m " No menu bar
+  set guioptions-=T " No tool bar
+  set guioptions-=r " No vertical scroll bar
 else
   set t_Co=256
 endif
@@ -104,6 +104,9 @@ set showcmd
 " Open new split panes to right and bottom
 set splitbelow
 set splitright
+
+inoremap jj <Esc>
+inoremap kk <Esc>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -181,7 +184,11 @@ nmap <leader>y :edit ~/.ycm_extra_conf.py
 
 augroup VIMRC_GROUP
   autocmd!
-  autocmd bufwritepost .vimrc source $MYVIMRC | AirlineRefresh
+  if has('win32')
+    autocmd bufwritepost _vimrc source $MYVIMRC | AirlineRefresh
+  else
+    autocmd bufwritepost .vimrc source $MYVIMRC | AirlineRefresh
+  endif
 augroup end
 
 
