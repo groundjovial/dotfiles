@@ -37,6 +37,7 @@ filetype indent plugin on
 let g:airline_powerline_fonts=1
 let g:airline_theme='powerlineish'
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#fnamemod=':t'
 
 "map <F10> :NERDTreeToggle<CR>
 "map <F9> :NERDTreeFind<CR>
