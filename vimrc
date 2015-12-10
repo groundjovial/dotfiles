@@ -175,6 +175,9 @@ imap <leader>" ""<ESC>i
 imap <leader>( ()<ESC>i
 imap <leader>[ []<ESC>i
 
+" Delete to black hole and paste
+xnoremap <leader>p "_dP
+
 " Put semi-colon at end of line and return to current position
 nmap <leader>; <Esc>mAA;<Esc>`A
 
