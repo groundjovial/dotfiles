@@ -10,6 +10,6 @@ cd $dir
 
 for file in $files; do
     mv ~/.$file ~/dotfiles_old/
-    ls -s $dir/$file ~/.$file
+    ln -s $dir/$file ~/.$file
 done
 
