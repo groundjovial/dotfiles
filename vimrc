@@ -20,7 +20,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'flazz/vim-colorschemes'
 if has('unix')
-  Plugin 'Valloric/YouCompleteMe'
+"  Plugin 'Valloric/YouCompleteMe'
 endif
 
 "Plugin 'scrooloose/nerdtree'
