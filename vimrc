@@ -48,7 +48,7 @@ let g:ycm_autoclose_preview_after_insertion=1
 """""""""""""""""
 " Vim settings
 
-set cursorline
+"set cursorline
 set tabstop=2
 set softtabstop=2
 set expandtab
@@ -60,7 +60,8 @@ set listchars=tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 colorscheme Tomorrow-Night-Eighties
 set background=dark
 
-let &colorcolumn=join(range(81,999),",")
+let &colorcolumn=join(range(81,81),",")
+"let &colorcolumn=join(range(81,999),",")
 
 if has('win32')
   " set clipboard-unnamed
@@ -176,7 +177,7 @@ imap <leader>( ()<ESC>i
 imap <leader>[ []<ESC>i
 
 " Delete to black hole and paste
-xnoremap <leader>p "_dP
+xnoremap <leader>b "_dP
 
 " Put semi-colon at end of line and return to current position
 nmap <leader>; <Esc>mAA;<Esc>`A
@@ -185,6 +186,10 @@ nmap <leader>l :set list!<CR>
 map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 nmap <leader>v :tabedit $MYVIMRC<CR>
 nmap <leader>y :edit ~/.ycm_extra_conf.py
+
+nnoremap <leader>y :let @y=@0<cr>
+nnoremap <leader>p "yp
+nnoremap <leader>P "yP
 
 augroup VIMRC_GROUP
   autocmd!
