@@ -176,9 +176,6 @@ imap <leader>" ""<ESC>i
 imap <leader>( ()<ESC>i
 imap <leader>[ []<ESC>i
 
-" Delete to black hole and paste
-xnoremap <leader>b "_dP
-
 " Put semi-colon at end of line and return to current position
 nmap <leader>; <Esc>mAA;<Esc>`A
 
@@ -187,6 +184,10 @@ map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 nmap <leader>v :tabedit $MYVIMRC<CR>
 nmap <leader>y :edit ~/.ycm_extra_conf.py
 
+" Delete to black hole and paste
+xnoremap <leader>b "_dP
+
+" Keys to assign yank buffer to buffer "y and then paste it.
 nnoremap <leader>y :let @y=@0<cr>
 nnoremap <leader>p "yp
 nnoremap <leader>P "yP
