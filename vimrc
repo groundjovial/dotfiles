@@ -7,6 +7,11 @@ set encoding=utf-8
 let mapleader=","
 filetype off
 
+let mycustomrc='~/my_custom_vimrc'
+if filereadable(expand(mycustomrc))
+  source ~/my_custom_vimrc
+endif
+
 if has('win32') || has('win64')
   set rtp+=~/vimfiles/bundle/Vundle.vim
   let vimDir='~/vimfiles/bundle/'
@@ -20,7 +25,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'flazz/vim-colorschemes'
 if has('unix')
-"  Plugin 'Valloric/YouCompleteMe'
+  if exists('USE_YCM')
+    Plugin 'Valloric/YouCompleteMe'
+  endif
+  if exists('USE_NT')
+    Plugin 'scrooloose/nerdtree'
+    map <F10> :NERDTreeToggle<CR>
+    map <F9> :NERDTreeFind<CR>
+  endif
 endif
 
 "Plugin 'scrooloose/nerdtree'
@@ -38,9 +50,6 @@ let g:airline_powerline_fonts=1
 let g:airline_theme='powerlineish'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemod=':t'
-
-"map <F10> :NERDTreeToggle<CR>
-"map <F9> :NERDTreeFind<CR>
 
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_after_insertion=1
@@ -182,7 +191,7 @@ nmap <leader>; <Esc>mAA;<Esc>`A
 nmap <leader>l :set list!<CR>
 map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 nmap <leader>v :tabedit $MYVIMRC<CR>
-nmap <leader>y :edit ~/.ycm_extra_conf.py
+nmap <leader>c :edit ~/.ycm_extra_conf.py
 
 " Delete to black hole and paste
 xnoremap <leader>b "_dP
