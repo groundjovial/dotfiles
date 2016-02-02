@@ -3,7 +3,7 @@
 # Vars
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files="vimrc tmux.conf"
+files="vimrc tmux.conf bash_aliases"
 
 mkdir -p $olddir
 cd $dir
