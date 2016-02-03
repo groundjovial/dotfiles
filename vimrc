@@ -140,6 +140,9 @@ vmap <C-up> xkP`[V`]
 " Disable mouse
 set mouse-=a
 
+" No ex mode
+map Q <Nop>
+
 " Disable arrow keys
 no <down> <Nop>
 no <left> <Nop>
