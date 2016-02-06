@@ -23,6 +23,7 @@ call vundle#begin(vimDir)
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'flazz/vim-colorschemes'
 if has('unix')
   if exists('USE_YCM')
@@ -126,8 +127,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Insert blank line above / below
-nnoremap <Enter> :call append(line('.'), '')<CR>
-nnoremap <S-Enter> :call append(line('.')-1, '')<CR>
+"nnoremap <Enter> :call append(line('.'), '')<CR>
+"nnoremap <S-Enter> :call append(line('.')-1, '')<CR>
 
 " Move line up / down
 no <C-down> ddp
